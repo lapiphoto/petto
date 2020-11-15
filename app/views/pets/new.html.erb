@@ -1,0 +1,48 @@
+<h1>新規投稿</h1>
+<!-- form_with部分 -->
+<%= form_with model:@pet, local:true do |f| %>
+
+  <h4>タイトル</h4><%= f.text_field :title %>
+  
+  <th>写真</th> <%= f.attachment_field :image %>
+
+  <h4>一言コメント</h4>
+  <%= f.text_field :comment %>
+
+   <h4>購入費用</h4>
+  <%= f.text_field :purchase_cost %>円
+
+   <h4>初期費用、買った物など</h4>
+  <%= f.text_field :initial_cost %>
+
+   <h4>購入場所</h4>
+  <%= f.text_field :place %>
+
+   <h4>飼育費用</h4>
+  １ヶ月<%= f.text_field :cost %>円
+
+   <h4>平均寿命</h4>
+  <%= f.text_field :lifespan %>歳
+
+   <h4>習性</h4>
+  <%= f.text_area :trait %>
+
+   <h4>飼った理由</h4>
+  <%= f.text_area :reason %>
+
+   <h4>飼い方</h4>
+  <%= f.text_area :care %>
+
+  <h4>餌、量など</h4>
+  <%= f.text_area :food %>
+
+  <h4>飼育で気をつける点</h4>
+  <%= f.text_area :attention %>
+
+   <h4>ブログ、インスタなどのurl</h4>
+  <%= f.text_field :blog %><br>
+
+
+  <%= f.submit '投稿' %>
+
+<% end %>

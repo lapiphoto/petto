@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="col-xs-12 col-xs-offset-10">
+        <%= link_to "新規投稿", new_pet_path	, class: "btn btn-info active" %> <br></br>
+        <%= link_to "戻る", pets_path %>
+      </div>
+      <table class="table table-bordered table-hover table-condensed">
+        <thaed>
+         <tr class="active">
+           <th>タイトル</th>
+           <th>写真</th>
+           <th>一言コメント</th>
+           <th>購入費用</th>
+           <th>初期費用、買った物など</th>
+           <th>購入場所</th>
+           <th>飼育費用</th>
+           <th>平均寿命</th>
+           <th>習性</th>
+           <th>飼った理由</th>
+           <th>飼い方</th>
+           <th>餌、量など</th>
+           <th>飼育で気をつける点</th>
+           <th>ブログ、インスタグラムなどのurl</th>
+         </tr>
+        </thaed>
+        <tbody>
+            <tr class="active">
+              <td><%= @pet.title %></td>
+              <th><%= attachment_image_tag @pet, :image, :fill, 300,  300, format: 'jpeg' %></th>
+              <td><%= @pet.comment %></td>
+              <td><%= @pet.purchase_cost %>円</td>
+              <td><%= @pet.initial_cost %></td>
+              <td><%= @pet.place %></td>
+              <td>１ヶ月<%= @pet.cost %>円</td>
+              <td><%= @pet.lifespan %></td>
+              <td><%= @pet.trait %></td>
+              <td><%= @pet.reason %></td>
+              <td><%= @pet.care %></td>
+              <td><%= @pet.food %></td>
+              <td><%= @pet.attention%></td>
+              <td><%= @pet.blog%></td>
+              <td><%= link_to "編集", edit_pet_path(@pet) %></td>
+            </tr>
+             <table>
+                <% if @pet.favorited_by?(current_user) %>
+                  <li>
+                    <%= link_to pet_favorites_path(@pet), method: :delete do %>
+                    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                    <%= @pet.favorites.count %> いいね
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li>
+                    <%= link_to pet_favorites_path(@pet), method: :post do %>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    <%= @pet.favorites.count %> いいね
+                <% end %>
+                  </li>
+                <% end %>
+      <% @pet.post_comments.each do |post_comment| %>
+      <% post_comment_user = post_comment.user %>
+        <tr>
+        	<td>
+        		<%= link_to user_path(post_comment_user), class: "user_#{post_comment_user.id}" do %>
+          		<%= post_comment_user.name %>
+        		<% end %>
+        	</td>
+        	<td><%= post_comment.comment %></td>
+        	<% if current_user == post_comment_user %>
+          	<td><%= link_to 'Destroy', pet_post_comment_path(post_comment.pet_id, post_comment.id), class: 'btn-sm btn-danger', method: :delete %></td>
+        	<% end %>
+        </tr>
+      <% end %>
+    </table>
+        <%= form_with model:[@pet,@post_comment], local: true do |f| %>
+            <%= f.text_area :comment, size:"90x5" %>
+            <%= f.submit '送信'%>
+        <% end %>
+    </tbody>
+      </table>
+    </div>
+  </div>
+</div>
