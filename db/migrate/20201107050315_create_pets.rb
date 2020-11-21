@@ -14,6 +14,8 @@ class CreatePets < ActiveRecord::Migration[5.2]
       t.text :food
       t.text :attention
       t.string :blog
+      t.integer :user_id
+      t.string :image_id
 
       t.timestamps
     end

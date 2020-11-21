@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_024551) do
+ActiveRecord::Schema.define(version: 2020_11_19_174817) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 2020_11_15_024551) do
     t.text "food"
     t.text "attention"
     t.string "blog"
+    t.integer "user_id"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "user_id"
-    t.string "image_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -50,8 +50,16 @@ ActiveRecord::Schema.define(version: 2020_11_15_024551) do
   create_table "questions", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.string "user_id"
-    t.string "pet_id"
+    t.integer "user_id"
+    t.integer "pet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "post_comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,9 +71,9 @@ ActiveRecord::Schema.define(version: 2020_11_15_024551) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
+    t.string "profile_image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "profile_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

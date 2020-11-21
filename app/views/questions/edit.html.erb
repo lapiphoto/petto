@@ -1,2 +1,13 @@
-<h1>Questions#edit</h1>
-<p>Find me in app/views/questions/edit.html.erb</p>
+<h1>よくある質問</h1>
+<!-- form_with部分 -->
+<%= form_with model:[@pet, @question], local: true do |f| %>
+
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+
+  <h4>本文</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit '編集' %>
+
+<% end %>

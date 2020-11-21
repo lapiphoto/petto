@@ -1,0 +1,15 @@
+<table class="table table-bordered table-hover table-condensed">
+
+
+            <h2>よくある質問</h2><p>(全<%= @questions.count %>件)</p>
+
+            <td><%= link_to '投稿する', new_pet_question_path(@pet) %></td>
+
+          <% @pet.questions.each do |question| %>
+          <div class="col-lg-4">
+            <p><%= link_to @pet.title, pet_path(@pet)%></p>
+            <p><%= link_to question.title,  pet_question_path(question.pet_id, question.id)%></p>
+          </div>
+          <% end %>
+
+      </table>

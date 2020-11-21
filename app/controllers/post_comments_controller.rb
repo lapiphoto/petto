@@ -3,10 +3,10 @@ class PostCommentsController < ApplicationController
 
 	def create
 		@pet = Pet.find(params[:pet_id])
-		@post_comment = PostComment.new(post_comment_params)
-		@post_comment.pet_id = @pet.id
-		@post_comment.user_id = current_user.id
-		if @post_comment.save
+		@new_post_comment = PostComment.new(post_comment_params)
+		@new_post_comment.pet_id = @pet.id
+		@new_post_comment.user_id = current_user.id
+		if @new_post_comment.save
   		redirect_to request.referer
 		else
 		  render 'pets/show'

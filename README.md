@@ -28,5 +28,5 @@ https://docs.google.com/spreadsheets/d/1oPmTspWQWyP2WW6DkVaIn9cb9jMewK8MECkOUVR4
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
-- 仮想環境：Vagrant
+- 仮想環境：cloud9
 

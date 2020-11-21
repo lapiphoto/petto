@@ -42,10 +42,10 @@
               <td><%= @pet.blog%></td>
               <td><%= link_to "編集", edit_pet_path(@pet) %></td>
             </tr>
-             <table>
+              <table>
                 <% if @pet.favorited_by?(current_user) %>
                   <li>
-                    <%= link_to pet_favorites_path(@pet), method: :delete do %>
+                    <%= link_to pet_favorite_path(@pet), method: :delete do %>
                     <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
                     <%= @pet.favorites.count %> いいね
                     <% end %>
@@ -55,28 +55,70 @@
                     <%= link_to pet_favorites_path(@pet), method: :post do %>
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                     <%= @pet.favorites.count %> いいね
+                  <% end %>
                 <% end %>
-                  </li>
-                <% end %>
-      <% @pet.post_comments.each do |post_comment| %>
-      <% post_comment_user = post_comment.user %>
-        <tr>
-        	<td>
-        		<%= link_to user_path(post_comment_user), class: "user_#{post_comment_user.id}" do %>
-          		<%= post_comment_user.name %>
-        		<% end %>
-        	</td>
-        	<td><%= post_comment.comment %></td>
-        	<% if current_user == post_comment_user %>
-          	<td><%= link_to 'Destroy', pet_post_comment_path(post_comment.pet_id, post_comment.id), class: 'btn-sm btn-danger', method: :delete %></td>
-        	<% end %>
-        </tr>
-      <% end %>
-    </table>
-        <%= form_with model:[@pet,@post_comment], local: true do |f| %>
-            <%= f.text_area :comment, size:"90x5" %>
-            <%= f.submit '送信'%>
-        <% end %>
+              </table>
+
+
+                <h2>よくある質問</h2>
+                <p>(全<%= @questions.count %>件)</p>
+
+                <td><%= link_to '投稿する', new_pet_question_path(@pet) %></td>
+
+                  <% @pet.questions.each do |question| %>
+                    <div class="col-lg-4">
+                      <p><%= link_to question.title,  pet_question_path(question.pet_id, question.id)%></p>
+                    </div>
+                  <% end %>
+
+
+                  <!--coment-->
+                  <%= form_with model:[@pet,@new_post_comment], local: true do |f| %>
+                    <%= f.text_area :comment, size:"90x2" %>
+                    <%= f.submit '送信'%>
+                  <% end %>
+
+                  <% @pet.post_comments.each do |post_comment| %>
+                    <% post_comment_user = post_comment.user %>
+                       <table>
+                        <tr>
+                        	<td>
+        	                	<%= link_to user_path(post_comment_user), class: "user_#{post_comment_user.id}" do %>
+          	              	<%= post_comment_user.name %>
+          	              	<% end %>
+        	                </td>
+        	             </tr>
+        	             <td><%= post_comment.comment %>
+                  	<% if current_user == post_comment_user %>
+          	           <%= link_to 'Destroy', pet_post_comment_path(post_comment.pet_id, post_comment.id), class: 'btn-sm btn-danger', method: :delete %></td></table>
+        	          <% end %>
+                <!--reply-->
+                      <%= form_with model:[@new_post_comment,@reply], url: pet_post_comment_replies_path(@pet.id, post_comment.id) , local: true do |f| %>
+                        <%= f.text_area :comment, size:"30x1" %>
+                        <%= f.submit '送信'%>
+                      <% end %>
+                    <table>
+                    <% post_comment.replies.each do |reply| %>
+                       <% reply_user = reply.user %>
+                      </table>
+                        <tr>
+                          <td>
+                            <%= link_to user_path(reply_user), class: "reply_#{reply_user.id}" do %>
+                            <%= reply_user.name %>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr><td><%= reply.comment %></td></tr>
+                      <% if current_user == reply_user %>
+                        <tr><td><%= link_to 'Destroy', pet_post_comment_reply_path(reply.post_comment_id, reply.id), method: :delete %></td></tr>
+                      <% end %>
+                    <% end %>
+                    </table>
+
+                  <% end %>
+
+
+
     </tbody>
       </table>
     </div>
