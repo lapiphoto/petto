@@ -8,15 +8,15 @@ class CreatePets < ActiveRecord::Migration[5.2]
       t.string :place
       t.string :cost
       t.string :lifespan
-      t.text :trait
-      t.text :reason
+      t.string :length
+      t.string :weight
+      t.text :personality
       t.text :care
       t.text :food
       t.text :attention
-      t.string :blog
       t.integer :user_id
       t.string :image_id
-
+      t.integer :category_id
       t.timestamps
     end
   end

@@ -1,0 +1,27 @@
+<div class=profile>
+
+  <div class="space3"></div>
+
+  <table class='table'>
+    <tr><%= attachment_image_tag(user, :profile_image, size:'200x200', fallback: "no_image.jpg") %></tr>
+    <div class=space2></div>
+    <tr>
+  	  <th>名前</th>
+  	  <th><%= user.name %></th>
+    </tr>
+    <tr>
+  	  <th>自己紹介</th>
+  	  <th><%= user.introduction %></th>
+    </tr>
+      <th>ブログ・SNS</th>
+  	  <th><%= user.blog %></th>
+    </tr>
+  </table>
+
+  <div class='row'>
+    <% if current_user == user %>
+      <%= link_to '', edit_user_path(user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
+    <% end %>
+
+  </div>
+</div>

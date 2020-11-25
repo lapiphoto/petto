@@ -3,7 +3,7 @@
 <%= form_with model:@pet, local:true do |f| %>
 
   <h4>タイトル</h4><%= f.text_field :title %>
-  
+
   <th>写真</th> <%= f.attachment_field :image %>
 
   <h4>一言コメント</h4>
@@ -24,11 +24,14 @@
    <h4>平均寿命</h4>
   <%= f.text_field :lifespan %>歳
 
-   <h4>習性</h4>
-  <%= f.text_area :trait %>
+   <h4>体長</h4>
+  <%= f.text_field :length %>
 
-   <h4>飼った理由</h4>
-  <%= f.text_area :reason %>
+  <h4>体重</h4>
+  <%= f.text_field :weight %>
+
+   <h4>性格</h4>
+  <%= f.text_area :personality %>
 
    <h4>飼い方</h4>
   <%= f.text_area :care %>
@@ -39,8 +42,15 @@
   <h4>飼育で気をつける点</h4>
   <%= f.text_area :attention %>
 
-   <h4>ブログ、インスタなどのurl</h4>
-  <%= f.text_field :blog %><br>
+  <div class="form_input">
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, Category.all, :id, :name,:include_blank => "カテゴリを選択してください" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tag_list %>
+    <%= f.text_field :tag_list, value: @pet.tag_list.join(','), class: "form-control" %>
+  </div>
 
 
   <%= f.submit '投稿' %>

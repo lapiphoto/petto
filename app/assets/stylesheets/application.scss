@@ -12,13 +12,56 @@
  *
  *= require_tree .
  *= require_self
+
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 
+header{
+  background: #ccffcc;
+  width: 100%;
+  height: 75px;
+}
 
-a:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 10px rgba(0,0,0,.2);
+.space{
+  width: 100%;
+  height: 90px;
+}
+
+.space2{
+  width: 50%;
+  height: 25px;
+}
+
+.space4{
+  width: 100%;
+  height: 50px;
+}
+
+// a:hover{
+//   background-size: 16px, 16px;
+//   background-image: image-url("pet.jpeg");
+// width: 10%;
+// height: 10%;
+// }
+
+.logo{
+  background-size: cover;
+  width: 148px;
+  height: 75px;
+  overflow: scroll;
+  position: relative;
+  bottom: 25px;
+  background-image: image-url("logo.jpeg");
+}
+
+ .page_top{
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  right: 50px;
+  bottom: 0px;
+  background-image: image-url("toukou.jpeg");
 }

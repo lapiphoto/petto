@@ -1,3 +1,48 @@
 // Place all the styles related to the pets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card{
+  background-color:grey;
+}
+
+.line{
+   background: #dfefff;
+   box-shadow: 0px 0px 0px 5px #dfefff;
+   border: dashed 2px white;
+   padding: 0.2em 0.5em;
+    width: 100%;
+    text-align:center;
+}
+
+.show{
+    background: #f4f9ff;
+    box-shadow: 0px 0px 0px 5px #f4f9ff;
+}
+
+.center{
+  text-align:center;
+  margin: auto;
+  width: 100%;
+}
+
+.line2 {
+  background: linear-gradient(transparent 70%, #dfefff 70%);
+}
+
+.page_top{
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  background-image: image-url("toukou.jpeg");
+}
+
+a:hover{
+  color: #010079;
+  text-shadow: 0 0 5px white;
+  padding: 0.3em 0.5em;
+  background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+  background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+}

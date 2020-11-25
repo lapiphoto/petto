@@ -1,78 +1,93 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <div class="col-xs-12 col-xs-offset-10">
-        <%= link_to "新規投稿", new_pet_path	, class: "btn btn-info active" %> <br></br>
-        <%= link_to "戻る", pets_path %>
+      <div class="col-xs-3">
+        <%= render 'users/info', user: @user %>
       </div>
-      <table class="table table-bordered table-hover table-condensed">
-        <thaed>
-         <tr class="active">
-           <th>タイトル</th>
-           <th>写真</th>
-           <th>一言コメント</th>
-           <th>購入費用</th>
-           <th>初期費用、買った物など</th>
-           <th>購入場所</th>
-           <th>飼育費用</th>
-           <th>平均寿命</th>
-           <th>習性</th>
-           <th>飼った理由</th>
-           <th>飼い方</th>
-           <th>餌、量など</th>
-           <th>飼育で気をつける点</th>
-           <th>ブログ、インスタグラムなどのurl</th>
-         </tr>
-        </thaed>
-        <tbody>
-            <tr class="active">
-              <td><%= @pet.title %></td>
-              <th><%= attachment_image_tag @pet, :image, :fill, 300,  300, format: 'jpeg' %></th>
-              <td><%= @pet.comment %></td>
-              <td><%= @pet.purchase_cost %>円</td>
-              <td><%= @pet.initial_cost %></td>
-              <td><%= @pet.place %></td>
-              <td>１ヶ月<%= @pet.cost %>円</td>
-              <td><%= @pet.lifespan %></td>
-              <td><%= @pet.trait %></td>
-              <td><%= @pet.reason %></td>
-              <td><%= @pet.care %></td>
-              <td><%= @pet.food %></td>
-              <td><%= @pet.attention%></td>
-              <td><%= @pet.blog%></td>
-              <td><%= link_to "編集", edit_pet_path(@pet) %></td>
-            </tr>
-              <table>
-                <% if @pet.favorited_by?(current_user) %>
-                  <li>
-                    <%= link_to pet_favorite_path(@pet), method: :delete do %>
-                    <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                    <%= @pet.favorites.count %> いいね
-                    <% end %>
-                  </li>
-                <% else %>
-                  <li>
-                    <%= link_to pet_favorites_path(@pet), method: :post do %>
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    <%= @pet.favorites.count %> いいね
-                  <% end %>
-                <% end %>
-              </table>
+      <div class="col-xs-9">
+        <i class="fas fa-undo-alt"></i>
+        <%= link_to "戻る", pets_path %>
+        <div class="pet show">
+           <div class="center"><h1 class="line"><%= @pet.title %></h1><br>
+           <%= attachment_image_tag @pet, :image, format: 'jpeg' %><br>
+           <h2 class="line2"><%= @pet.comment %></h2></div>
+
+           <!--favorite-->
+            <div id="favorites_buttons_<%=@pet.id %>">
+              <%= render partial: "favorites/favorite", locals: { pet: @pet, favorite: @favorite } %>
+            </div>
+
+            <!--text-->
+
+           <div class=space4></div>
+
+           <div class=cost>
+             <table class='table'>
+               <tr>
+            	  <th>購入費用</th>
+            	  <th><%= @pet.purchase_cost %></th>
+              </tr>
+              <tr>
+            	  <th>初期費用・買ったものなど</th>
+            	  <th><%= @pet.initial_cost %></th>
+              </tr>
+              <tr>
+            	  <th>購入場所</th>
+            	  <th><%= @pet.place %></th>
+            	</tr>
+            	<tr>
+            	  <th>飼育費用</th>
+            	  <th><%= @pet.cost %></th>
+            	</tr>
+            </table>
+          </div>
+
+           <div class=space4></div>
+           <div class=life>
+             <table class='table'>
+              <tr>
+            	  <th>平均寿命</th>
+            	  <th><%= @pet.lifespan %></th>
+              </tr>
+              <tr>
+            	  <th>体長</th>
+            	  <th><%= @pet.length %></th>
+              </tr>
+                <th>体重</th>
+            	  <th><%= @pet.weight %></th>
+              </tr>
+              <tr>
+            	  <th>性格</th>
+            	  <th><%= @pet.personality %></th>
+              </tr>
+            </table>
+          </div>
+
+          <div class=space4></div>
+          <div class=care>
+             <table class='table'>
+               <tr>
+            	  <th>飼い方</th>
+            	  <th><%= @pet.care %></th>
+              </tr>
+              <tr>
+            	  <th>餌・量など</th>
+            	  <th><%= @pet.food %></th>
+              </tr>
+              <tr>
+            	  <th>飼育で気をつけること</th>
+            	  <th><%= @pet.attention %></th>
+            	</tr>
+            </table>
+          </div>
 
 
-                <h2>よくある質問</h2>
-                <p>(全<%= @questions.count %>件)</p>
-
-                <td><%= link_to '投稿する', new_pet_question_path(@pet) %></td>
-
-                  <% @pet.questions.each do |question| %>
-                    <div class="col-lg-4">
-                      <p><%= link_to question.title,  pet_question_path(question.pet_id, question.id)%></p>
-                    </div>
-                  <% end %>
+                <!--questions-->
+                <%= render 'questions/index', pet: @pet, questions: @questions %>
 
 
                   <!--coment-->
+                  <h2>コメント</h2>
                   <%= form_with model:[@pet,@new_post_comment], local: true do |f| %>
                     <%= f.text_area :comment, size:"90x2" %>
                     <%= f.submit '送信'%>
@@ -94,7 +109,7 @@
         	          <% end %>
                 <!--reply-->
                       <%= form_with model:[@new_post_comment,@reply], url: pet_post_comment_replies_path(@pet.id, post_comment.id) , local: true do |f| %>
-                        <%= f.text_area :comment, size:"30x1" %>
+                        <%= f.text_area :comment %>
                         <%= f.submit '送信'%>
                       <% end %>
                     <table>
@@ -116,11 +131,13 @@
                     </table>
 
                   <% end %>
+           </div>
 
-
+      </div>
 
     </tbody>
       </table>
     </div>
   </div>
 </div>
+<%= link_to new_pet_path do %><div class="page_top"></div><% end %>

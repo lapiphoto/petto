@@ -1,5 +1,8 @@
 <div class="profile-container">
   <h3 class="profile-name"></h3>
+  <table class='table'>
+
+
   <% if @user.id == current_user.id %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
   <% end %>

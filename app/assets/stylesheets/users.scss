@@ -1,3 +1,30 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.space3{
+  width: 100%;
+  height: 50px;
+}
+
+.profile_image{
+  border-radius: 50%;
+}
+
+.image{
+  width: 90%;
+}
+
+.profile_image{
+  width: 100%;
+  object-fit: cover;
+}
+
+.profile{
+  position: fixed;
+  width: 15%;
+}
+
+.col-xs-3 {
+    position: relative;
+    width: 16%;
+}
