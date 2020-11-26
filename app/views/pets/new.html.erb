@@ -1,58 +1,64 @@
-<h1>新規投稿</h1>
-<!-- form_with部分 -->
-<%= form_with model:@pet, local:true do |f| %>
+<div class="container">
+  <div class="row">
+  <div class="col-xs-12">
+    <h1 class=center2>新規投稿</h1>
+    <!-- form_with部分 -->
+    <%= form_with model:@pet, local:true do |f| %>
 
-  <h4>タイトル</h4><%= f.text_field :title %>
+      <div class="form_input">
+        <%= f.label :カテゴリー %>
+        <%= f.collection_select :category_id, Category.all, :id, :name,:include_blank => "カテゴリを選択してください" %>
+      </div>
 
-  <th>写真</th> <%= f.attachment_field :image %>
+      <h4>タイトル</h4><%= f.text_field :title %>
 
-  <h4>一言コメント</h4>
-  <%= f.text_field :comment %>
+      <h4>写真</h4> <%= f.attachment_field :image %>
 
-   <h4>購入費用</h4>
-  <%= f.text_field :purchase_cost %>円
+      <h4>一言コメント</h4>
+      <%= f.text_field :comment %>
 
-   <h4>初期費用、買った物など</h4>
-  <%= f.text_field :initial_cost %>
+       <h4>購入費用</h4>
+      <%= f.text_field :purchase_cost %>円
 
-   <h4>購入場所</h4>
-  <%= f.text_field :place %>
+       <h4>初期費用、買った物など</h4>
+      <%= f.text_field :initial_cost %>
 
-   <h4>飼育費用</h4>
-  １ヶ月<%= f.text_field :cost %>円
+       <h4>購入場所</h4>
+      <%= f.text_field :place %>
 
-   <h4>平均寿命</h4>
-  <%= f.text_field :lifespan %>歳
+       <h4>飼育費用</h4>
+      １ヶ月<%= f.text_field :cost %>円
 
-   <h4>体長</h4>
-  <%= f.text_field :length %>
+       <h4>平均寿命</h4>
+      <%= f.text_field :lifespan %>歳
 
-  <h4>体重</h4>
-  <%= f.text_field :weight %>
+       <h4>体長</h4>
+      <%= f.text_field :length %>
 
-   <h4>性格</h4>
-  <%= f.text_area :personality %>
+      <h4>体重</h4>
+      <%= f.text_field :weight %>
 
-   <h4>飼い方</h4>
-  <%= f.text_area :care %>
+       <h4>性格</h4>
+      <%= f.text_area :personality %>
 
-  <h4>餌、量など</h4>
-  <%= f.text_area :food %>
+       <h4>飼い方</h4>
+      <%= f.text_area :care %>
 
-  <h4>飼育で気をつける点</h4>
-  <%= f.text_area :attention %>
+      <h4>餌、量など</h4>
+      <%= f.text_area :food %>
 
-  <div class="form_input">
-    <%= f.label :category_id %>
-    <%= f.collection_select :category_id, Category.all, :id, :name,:include_blank => "カテゴリを選択してください" %>
+      <h4>飼育で気をつける点</h4>
+      <%= f.text_area :attention %>
+
+      <div class="form-group">
+        <%= f.label :タグ %>
+        <%= f.text_field :tag_list, value: @pet.tag_list.join(','), class: "form-control" %>
+      </div>
+
+
+      <%= f.submit '投稿' %>
+
+    <% end %>
   </div>
-
-  <div class="form-group">
-    <%= f.label :tag_list %>
-    <%= f.text_field :tag_list, value: @pet.tag_list.join(','), class: "form-control" %>
-  </div>
-
-
-  <%= f.submit '投稿' %>
-
-<% end %>
+ </div>
+</div>

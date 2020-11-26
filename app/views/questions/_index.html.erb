@@ -4,9 +4,8 @@
           <th><h1>よくある質問</h1></th>
           <th><p>(全<%= questions.count %>件)</p></th>
         </tr>
-          <th><% @pet.questions.each do |question| %>
+          <% @pet.questions.each do |question| %>
             <%= link_to question.title,  pet_question_path(question.pet_id, question.id)%>
-          </th>
-        </tr>
             <% end %>
+        </tr>
     </table>
