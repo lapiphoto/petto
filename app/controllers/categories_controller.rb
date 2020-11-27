@@ -13,7 +13,9 @@ class CategoriesController < ApplicationController
     end
 
     def index
-        @categories = Category.all
+        @search_pets = Pet.where(category_id: params[:format])
+
+        #@categories = Category.all
     end
 
     private

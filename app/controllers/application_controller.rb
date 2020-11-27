@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
   
   before_action :set_search
   def set_search
-    @search = Pet.ransack(params[:q]) #ransackメソッド推奨
+    @search = Pet.ransack(params[:q])
+    
+    # @search_tag = Tag.ransack(params[:q]) 
+    #ransackメソッド推奨
     @search_pets = @search.result.all
   end
 end

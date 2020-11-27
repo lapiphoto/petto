@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  def show
 
+  def show
     @user = User.find(params[:id])
+    @pets = @user.pets
      #@pets = @user.pets.page(params[:page]).reverse_order
   end
 

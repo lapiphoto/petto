@@ -5,139 +5,143 @@
         <%= render 'users/info', user: @user %>
       </div>
       <div class="col-xs-9">
-        <i class="fas fa-undo-alt"></i>
-        <%= link_to "戻る", pets_path %>
-        <div class="pet show">
-           <div class="center"><h1 class="line"><%= @pet.title %></h1><br>
-           <%= attachment_image_tag @pet, :image, format: 'jpeg' %><br>
-           <h2 class="line2"><%= @pet.comment %></h2></div>
+          <i class="fas fa-undo-alt"></i>
+          <%= link_to "戻る", pets_path %>
+          <div class="pet show">
+             <div class="center"><h1 class="line"><%= @pet.title %></h1><br>
+             <%= attachment_image_tag @pet, :image, format: 'jpeg', fallback: "no_pet.jpg", :size =>'200x200' %><br>
 
-           <!--favorite-->
-            <div id="favorites_buttons_<%=@pet.id %>">
-              <%= render partial: "favorites/favorite", locals: { pet: @pet, favorite: @favorite } %>
+             <h2 class="line2"><%= @pet.comment %></h2>
+             </div>
+            <div class=center4>
+             <!--favorite-->
+              <div id="favorites_buttons_<%=@pet.id %>">
+                <%= render partial: "favorites/favorite", locals: { pet: @pet, favorite: @favorite } %>
+              </div>
+
+              <!--text-->
+
+             <div class=space4></div>
+
+             <div class=cost>
+               <table class='table'>
+                 <tr>
+              	  <th>購入費用</th>
+              	  <th><%= @pet.purchase_cost %></th>
+                </tr>
+                <tr>
+              	  <th>初期費用・買ったものなど</th>
+              	  <th><%= @pet.initial_cost %></th>
+                </tr>
+                <tr>
+              	  <th>購入場所</th>
+              	  <th><%= @pet.place %></th>
+              	</tr>
+              	<tr>
+              	  <th>飼育費用</th>
+              	  <th><%= @pet.cost %></th>
+              	</tr>
+              </table>
             </div>
 
-            <!--text-->
+             <div class=space4></div>
+             <div class=life>
+               <table class='table'>
+                <tr>
+              	  <th>平均寿命</th>
+              	  <th><%= @pet.lifespan %></th>
+                </tr>
+                <tr>
+              	  <th>体長</th>
+              	  <th><%= @pet.length %></th>
+                </tr>
+                  <th>体重</th>
+              	  <th><%= @pet.weight %></th>
+                </tr>
+                <tr>
+              	  <th>性格</th>
+              	  <th><%= @pet.personality %></th>
+                </tr>
+              </table>
+            </div>
 
-           <div class=space4></div>
-
-           <div class=cost>
-             <table class='table'>
-               <tr>
-            	  <th>購入費用</th>
-            	  <th><%= @pet.purchase_cost %></th>
-              </tr>
-              <tr>
-            	  <th>初期費用・買ったものなど</th>
-            	  <th><%= @pet.initial_cost %></th>
-              </tr>
-              <tr>
-            	  <th>購入場所</th>
-            	  <th><%= @pet.place %></th>
-            	</tr>
-            	<tr>
-            	  <th>飼育費用</th>
-            	  <th><%= @pet.cost %></th>
-            	</tr>
-            </table>
-          </div>
-
-           <div class=space4></div>
-           <div class=life>
-             <table class='table'>
-              <tr>
-            	  <th>平均寿命</th>
-            	  <th><%= @pet.lifespan %></th>
-              </tr>
-              <tr>
-            	  <th>体長</th>
-            	  <th><%= @pet.length %></th>
-              </tr>
-                <th>体重</th>
-            	  <th><%= @pet.weight %></th>
-              </tr>
-              <tr>
-            	  <th>性格</th>
-            	  <th><%= @pet.personality %></th>
-              </tr>
-            </table>
-          </div>
-
-          <div class=space4></div>
-          <div class=care>
-             <table class='table'>
-               <tr>
-            	  <th>飼い方</th>
-            	  <th><%= @pet.care %></th>
-              </tr>
-              <tr>
-            	  <th>餌・量など</th>
-            	  <th><%= @pet.food %></th>
-              </tr>
-              <tr>
-            	  <th>飼育で気をつけること</th>
-            	  <th><%= @pet.attention %></th>
-            	</tr>
-            </table>
-          </div>
+            <div class=space4></div>
+            <div class=care>
+               <table class='table'>
+                 <tr>
+              	  <th>飼い方</th>
+              	  <th><%= @pet.care %></th>
+                </tr>
+                <tr>
+              	  <th>餌・量など</th>
+              	  <th><%= @pet.food %></th>
+                </tr>
+                <tr>
+              	  <th>飼育で気をつけること</th>
+              	  <th><%= @pet.attention %></th>
+              	</tr>
+              </table>
+            </div>
 
 
-                <!--questions-->
-                <%= render 'questions/index', pet: @pet, questions: @questions %>
+                  <!--questions-->
+                  <%= render 'questions/index', pet: @pet, questions: @questions %>
 
 
-                  <!--coment-->
-                  <h2>コメント</h2>
-                  <%= form_with model:[@pet,@new_post_comment], local: true do |f| %>
-                    <%= f.text_area :comment, size:"90x2" %>
-                    <%= f.submit '送信'%>
-                  <% end %>
+                    <!--coment-->
+                    <!--コメント入力フォーム-->
 
-                  <% @pet.post_comments.each do |post_comment| %>
-                    <% post_comment_user = post_comment.user %>
-                       <table>
-                        <tr>
-                        	<td>
-        	                	<%= link_to user_path(post_comment_user), class: "user_#{post_comment_user.id}" do %>
-          	              	<%= post_comment_user.name %>
-          	              	<% end %>
-        	                </td>
-        	             </tr>
-        	             <td><%= post_comment.comment %>
-                  	<% if current_user == post_comment_user %>
-          	           <%= link_to 'Destroy', pet_post_comment_path(post_comment.pet_id, post_comment.id), class: 'btn-sm btn-danger', method: :delete %></td></table>
-        	          <% end %>
-                <!--reply-->
-                      <%= form_with model:[@new_post_comment,@reply], url: pet_post_comment_replies_path(@pet.id, post_comment.id) , local: true do |f| %>
-                        <%= f.text_area :comment %>
-                        <%= f.submit '送信'%>
-                      <% end %>
-                    <table>
-                    <% post_comment.replies.each do |reply| %>
-                       <% reply_user = reply.user %>
-                      </table>
-                        <tr>
-                          <td>
-                            <%= link_to user_path(reply_user), class: "reply_#{reply_user.id}" do %>
-                            <%= reply_user.name %>
-                            <% end %>
-                          </td>
-                        </tr>
-                        <tr><td><%= reply.comment %></td></tr>
-                      <% if current_user == reply_user %>
-                        <tr><td><%= link_to 'Destroy', pet_post_comment_reply_path(reply.post_comment_id, reply.id), method: :delete %></td></tr>
-                      <% end %>
+                    <h2>コメント</h2>
+                    <%= form_with(model:[@pet,@new_post_comment], local: true) do |f| %>
+                    	<div class="row justify-content-center">
+                    		<div class="col-8">
+                    			<%= f.text_area :comment, rows:'5', class: "form-control", placeholder: "コメントをここに" %>
+                    		</div>
+                    		<div class="col-8 mt-2">
+                    			<%= f.submit "送信する", class: "btn btn-secondary pull-right" %>
+                    		</div>
+                    	</div>
                     <% end %>
-                    </table>
 
-                  <% end %>
-           </div>
+                     <!--文章-->
+                     <!--コメント一覧-->
+                    <div class="row">
+                    	<div class="col-xs-12">
+                    		<table id="js-table-comment", class="table col-xs-12">
+                    			<% @pet.post_comments.each do |post_comment| %>
+                    				<tr class="row justify-content-center">
+                    					<td class="col-xs-2">
+                    						<div class="center"><%= link_to attachment_image_tag(post_comment.user, :profile_image, :fill, 80, 80, fallback: "no_image.jpeg", size:'80x80', class:"profile_image"), user_path(post_comment.user) %></div>
+                    						<p class="center"><%= post_comment.user.name %></p>
+                    					</td>
+                    					<td class="col-xs-10">
+                    					  <div class="says">
+                    					    <!--改行できるよ-->
+                    					    <p><%= safe_join(post_comment.comment.split("\n"),tag(:br)) %></p>
+                    					    <span><%= l post_comment.created_at %></span>
+                    					    <% if user_signed_in? && post_comment.user_id == current_user.id %>
+                    								<%= link_to pet_post_comment_path(post_comment.pet_id, post_comment.id), method: :delete, class: "btn-sm btn-danger pull-right", local: true do %>
+                    									<i class="far fa-trash-alt" aria-hidden="true"></i>
+                    								<% end %>
+                    							<% end %>
+                    					  </div>
+                    					</td>
+                    				</tr>
+                    			<% end %>
+                    		</table>
+                    	</div>
+                    </div>
 
+                  <!--reply-->
+
+             </div>
+
+        </div>
+
+      </tbody>
+        </table>
       </div>
-
-    </tbody>
-      </table>
-    </div>
+      </div>
   </div>
 </div>
 <%= link_to new_pet_path do %><div class="page_top"></div><% end %>

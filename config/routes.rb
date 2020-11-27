@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :categories
+  root  :to => "pets#top"
   resources :pets do
     resources :post_comments, only: [:create, :destroy] do
       resources :replies, only: [:create, :destroy]
