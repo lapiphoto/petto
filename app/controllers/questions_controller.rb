@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!
   def show
     @pet = Pet.find(params[:pet_id])
     @question = Question.find(params[:id])
@@ -15,7 +16,7 @@ class QuestionsController < ApplicationController
 		@question.pet_id = @pet.id
 		@question.user_id = @pet.user.id
 		if @question.save
-  		redirect_to request.referer
+  		redirect_to pet_path(@pet)
 		else
 		  render 'questions/show'
 		end
@@ -27,9 +28,10 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    @pet = Pet.find(params[:pet_id])
     @question = Question.find(params[:id])
     if @question.update(question_params)
-      redirect_to pet_question_path(pet_id:params[:pet_id],id: @question.id)
+      redirect_to pet_path(@pet)
     else
       render "edit"
     end

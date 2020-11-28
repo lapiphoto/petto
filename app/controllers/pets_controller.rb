@@ -1,4 +1,5 @@
 class PetsController < ApplicationController
+  before_action :authenticate_user!, except: %i[top]
 
   def index
      if params[:tag_cont].present?

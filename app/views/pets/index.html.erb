@@ -5,7 +5,7 @@
 
       <!--カテゴリ-->
           <% Category.all.each do |category| %>
-              <%= link_to category.name, categories_path(category) %>
+              <%= link_to category.name, categories_path(category), class: "botan" %>
           <% end %>
       <!--検索-->
           <%= search_form_for @search, url: pets_path do |f| %>

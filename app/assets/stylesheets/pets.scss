@@ -42,12 +42,16 @@
   position: fixed;
   right: 50px;
   bottom: 50px;
-  background-image: image-url("toukou.jpeg");
+  background-image: image-url("pet.jpeg");
 }
 
 .page_top:hover{
   background-size: contain;
- background-image: image-url("pet.jpeg")
+ background-image: image-url("toukou.jpeg")
+}
+
+li a{
+   color: white;
 }
 
 li a:hover{
@@ -64,4 +68,22 @@ li a:hover{
 
 table th {
   word-break : break-all;
+}
+
+.botan{
+    padding: 10px;
+    margin: 3px;
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+}
+
+.questions_count{
+  display: inline-block;
+  margin: 0 0 20px 20px;
+  padding-bottom: 10px;
+}
+
+.question_title{
+  display: inline-block;
 }

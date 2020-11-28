@@ -7,7 +7,7 @@
 
       <!--カテゴリ-->
       <% Category.all.each do |category| %>
-          <%= link_to category.name, categories_path(category) %>
+          <%= link_to category.name, categories_path(category), class: "botan" %>
       <% end %>
 
       <table class="table table-bordered table-hover table-condensed">

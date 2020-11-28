@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   </head>
 
-
+ <body>
   <header class="navbar navbar-fixed-top navbar-inverse-">
     <div class="space2"></div>
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
-          <div class="logo"></div>
+          <%= link_to root_path do %><div class="logo"></div><% end %>
         </nav>
         <nav>
           <ul class="nav navbar-nav navbar-right">
@@ -31,7 +31,9 @@
        </div>
   </header>
   <div class="space"></div>
-  <body>
     <%= yield %>
+  <footer>
+    <img src="/assets/pet2-2cd62c106ee4b306af1e663e689646200129262ec32d38e387ad5e0567b792af.jpg" class="footer-image">
+  </footer>
   </body>
 </html>
