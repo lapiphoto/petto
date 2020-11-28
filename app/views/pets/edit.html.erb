@@ -1,55 +1,92 @@
 <div class="container">
   <div class="row">
    <div class="col-xs-12">
-  <h1 class="center2">新規投稿</h1>
-  </div>
-  <!-- form_with部分 -->
-  <%= form_with model:@pet, local:true do |f| %>
+    <div class="col-xs-2">
+    </div>
+     <div class="col-xs-8">
+      <h1 class=center2>編集画面</h1>
+      <!-- form_with部分 -->
+      <%= form_with model:@pet, local:true do |f| %>
 
-    <h4>タイトル</h4><%= f.text_field :title %>
+        <div class="form_input">
+          <%= f.label :カテゴリー %>
+          <%= f.collection_select :category_id, Category.all, :id, :name,:include_blank => "カテゴリを選択してください" %>
+        </div>
 
-    <th>写真</th> <%= f.attachment_field :image %>
+        <div class="form-group">
+         <%= f.label :タイトル %>
+         <%= f.text_field :title, class: "form-control" %>
+        </div>
 
-    <h4>一言コメント</h4>
-    <%= f.text_field :comment %>
+        <h4>写真</h4>
+         <%= f.attachment_field :image, fallback: "no_pet.jpg", :size =>'200x200' %>
 
-     <h4>購入費用</h4>
-    <%= f.text_field :purchase_cost %>円
+        <div class="form-group">
+         <%= f.label :一言コメント %>
+         <%= f.text_field :comment, class: "form-control" %>
+        </div>
 
-     <h4>初期費用、買った物など</h4>
-    <%= f.text_field :initial_cost %>
+        <div class="form-group">
+         <%= f.label :購入費用 %>
+         <%= f.text_field :purchase_cost, class: "form-control" %>円
+         </div>
 
-     <h4>購入場所</h4>
-    <%= f.text_field :place %>
+        <div class="form-group">
+         <%= f.label :初期費用・買ったものなど %>
+         <%= f.text_field :initial_cost, class: "form-control" %>
+        </div>
 
-     <h4>飼育費用</h4>
-    １ヶ月<%= f.text_field :cost %>円
+        <div class="form-group">
+         <%= f.label :購入場所 %>
+         <%= f.text_field :place, class: "form-control" %>
+        </div>
 
-     <h4>平均寿命</h4>
-    <%= f.text_field :lifespan %>歳
+        <div class="form-group">
+          <%= f.label :飼育費用 %>
+         １ヶ月<%= f.text_field :cost, class: "form-control" %>円
+         </div>
 
-     <h4>習性</h4>
-    <%= f.text_area :trait %>
+        <div class="form-group">
+         <%= f.label :平均寿命 %>
+         <%= f.text_field :lifespan, class: "form-control" %>歳
+        </div>
 
-     <h4>飼った理由</h4>
-    <%= f.text_area :reason %>
+        <div class="form-group">
+         <%= f.label :体長 %>
+         <%= f.text_field :length, class: "form-control" %>
+        </div>
 
-     <h4>飼い方</h4>
-    <%= f.text_area :care %>
+        <div class="form-group">
+         <%= f.label :体重 %>
+         <%= f.text_field :weight, class: "form-control" %>
+        </div>
 
-    <h4>餌、量など</h4>
-    <%= f.text_area :food %>
+        <div class="form-group">
+         <%= f.label :性格 %>
+         <%= f.text_area :personality, class: "form-control" %>
+        </div>
 
-    <h4>飼育で気をつける点</h4>
-    <%= f.text_area :attention %>
+        <div class="form-group">
+         <%= f.label :飼い方 %>
+         <%= f.text_area :care, class: "form-control" %>
+        </div>
 
-     <h4>ブログ、インスタなどのurl</h4>
-    <%= f.text_field :blog %><br>
+        <div class="form-group">
+         <%= f.label :餌 %>
+         <%= f.text_area :food, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+         <%= f.label :飼育での注意 %>
+         <%= f.text_area :attention, class: "form-control" %>
+        </div>
 
 
-    <%= f.submit '更新' %>
+        <%= f.submit '変更を確定', class:"btn btn-lg btn-block btn-base-1 mt-20" %>
 
-  <% end %>
+      <% end %>
+    </div>
+   </div>
   </div>
  </div>
 </div>

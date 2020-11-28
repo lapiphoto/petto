@@ -63,5 +63,15 @@ header{
   position: fixed;
   right: 50px;
   bottom: 0px;
-  background-image: image-url("toukou.jpeg");
+  background-image: image-url("pet.jpeg");
+}
+
+.footer-image {
+  // background-size: cover;
+  height: 320px;
+  width: 100%;
+  background-image: image-url("wave.svg");
+  // // bottom: 0;
+  // height: 100px;
+  // width: 100%;
 }

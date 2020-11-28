@@ -1,11 +1,7 @@
 <p><%= link_to '投稿する', new_pet_question_path(pet) %></p>
-    <table class="questions">
-        <tr>
-          <th><h1>よくある質問</h1></th>
-          <th><p>(全<%= questions.count %>件)</p></th>
-        </tr>
-          <% @pet.questions.each do |question| %>
-            <%= link_to question.title,  pet_question_path(question.pet_id, question.id)%>
-            <% end %>
-        </tr>
-    </table>
+    <h1 class="question_title">よくある質問</h1><p class="questions_count">(全<%= questions.count %>件)</p>
+    <div class="questions">
+      <% @pet.questions.each do |question| %>
+            <%= link_to question.title,  pet_question_path(question.pet_id, question.id), class: "question"%>
+      <% end %>
+    </div>

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users
+  resources :users do
+    resource :relationships, only: [:create, :destroy]
+  	get 'followings' => 'relationships#followings', as: 'followings'
+  	get 'followers' => 'relationships#followers', as: 'followers'
+  end
   resources :categories
+  root  :to => "pets#top"
   resources :pets do
     resources :post_comments, only: [:create, :destroy] do
       resources :replies, only: [:create, :destroy]

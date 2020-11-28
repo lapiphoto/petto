@@ -7,6 +7,7 @@ class Pet < ApplicationRecord
   attachment :image
   acts_as_taggable
   acts_as_taggable_on :skills, :interests
+  default_scope -> { order(created_at: :desc) }
 
   has_many :favorites, dependent: :destroy
   def favorited_by?(user)

@@ -12,16 +12,16 @@
 
 .image{
   width: 90%;
+  height: auto
 }
 
 .profile_image{
-  width: 100%;
-  object-fit: contain;
+ object-fit: cover;
+ object-position: center;
 }
 
 .profile{
-  position: fixed;
-  width: 15%;
+  text-align: center;
 }
 
 .col-xs-3 {

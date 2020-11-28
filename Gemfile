@@ -63,6 +63,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem 'pry-byebug'
 gem "refile-mini_magick"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'acts-as-taggable-on', '~> 6.0'

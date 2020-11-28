@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+    before_action :authenticate_user!
   def new
         @category = Category.new
     end
@@ -13,7 +14,9 @@ class CategoriesController < ApplicationController
     end
 
     def index
-        @categories = Category.all
+        @search_pets = Pet.where(category_id: params[:format])
+
+        #@categories = Category.all
     end
 
     private

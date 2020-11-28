@@ -1,7 +1,18 @@
 class PetsController < ApplicationController
+  before_action :authenticate_user!, except: %i[top]
 
   def index
-    @searchpets = Pet.all
+     if params[:tag_cont].present?
+      @searchpets = Pet.tagged_with(params[:tag_cont])
+    elsif params[:q]
+      @search_tag = Pet.ransack(params[:q])
+
+    end
+
+  end
+
+  def top
+       @pets = Pet.first(3)
   end
 
   def show

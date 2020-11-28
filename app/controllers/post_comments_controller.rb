@@ -15,7 +15,7 @@ class PostCommentsController < ApplicationController
 
 	def destroy
 		@pet = Pet.find(params[:pet_id])
-  	    post_comment = @pet.post_comments.find(params[:id])
+  	post_comment = @pet.post_comments.find(params[:id])
 		post_comment.destroy
 		redirect_to request.referer
 	end
