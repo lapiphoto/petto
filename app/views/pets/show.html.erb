@@ -114,7 +114,7 @@
                     			<% @pet.post_comments.each do |post_comment| %>
                     				<tr class="row justify-content-center">
                     					<td class="col-xs-2">
-                    						<div class="center"><%= link_to attachment_image_tag(post_comment.user, :profile_image, :fill, 80, 80, fallback: "no_image.jpeg", size:'80x80', class:"profile_image"), user_path(post_comment.user) %></div>
+                    						<div class="center"><%= link_to attachment_image_tag(post_comment.user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", size:'80x80', class:"profile_image"), user_path(post_comment.user) %></div>
                     						<p class="center"><%= post_comment.user.name %></p>
                     					</td>
                     					<td class="col-xs-10">
