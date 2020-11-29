@@ -4,7 +4,7 @@
     <div class=" col-lg-4">
       <div class="card">
         <h4><%= pet.title %></h4>
-        <div class="center2"><%= attachment_image_tag pet, :image, :fill, 300,  300, format: 'jpeg', fallback: "no_pet.jpg", :size =>'200x200' %></div>
+        <div class="center2"><%= attachment_image_tag pet, :image, :fill, 300,  300, fallback: "no_pet.jpg", :size =>'200x200' %></div>
         <h4><%= pet.comment %></h4>
       </div>
     </div>
