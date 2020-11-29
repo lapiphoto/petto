@@ -75,3 +75,21 @@ header{
   // height: 100px;
   // width: 100%;
 }
+
+.top_image {
+  width: auto;
+  height: 380px;
+  background-image: image-url("petto4.jpeg");
+  background-size: cover;
+}
+.top_image_black {
+  width: 100%; /* 横幅40% */
+  height: 100%; /* 親の高さに揃える */
+  background-color: rgba( 0, 0, 0, 0.3);
+}
+
+.top_font {
+  text-align: center ;
+  color: white;
+  padding-top: 130px;
+}

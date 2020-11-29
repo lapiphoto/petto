@@ -30,6 +30,8 @@ class QuestionsController < ApplicationController
   def update
     @pet = Pet.find(params[:pet_id])
     @question = Question.find(params[:id])
+    @question.pet_id = @pet.id
+		@question.user_id = @pet.user.id
     if @question.update(question_params)
       redirect_to pet_path(@pet)
     else
